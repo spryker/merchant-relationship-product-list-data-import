@@ -40,17 +40,11 @@ class MerchantRelationshipProductListDataImportBusinessFactory extends DataImpor
         return $dataImporter;
     }
 
-    /**
-     * @return \Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface
-     */
     public function createMerchantRelationshipKeyToIdMerchantRelationshipStep(): DataImportStepInterface
     {
         return new MerchantRelationshipKeyToIdMerchantRelationshipStep();
     }
 
-    /**
-     * @return \Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface
-     */
     public function createProductListKeyToIdProductListStep(): DataImportStepInterface
     {
         return new ProductListKeyToIdProductListStep();

@@ -33,9 +33,6 @@ class MerchantRelationshipProductListDataImportPluginTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testImportImportsData(): void
     {
         // Assign
@@ -55,9 +52,6 @@ class MerchantRelationshipProductListDataImportPluginTest extends Unit
         $this->tester->assertProductListTableContainsRecords();
     }
 
-    /**
-     * @return void
-     */
     public function testImportThrowsExceptionWhenProductListKeyIsNotDefined(): void
     {
         // Assign
@@ -74,9 +68,6 @@ class MerchantRelationshipProductListDataImportPluginTest extends Unit
         $merchantRelationshipProductListDataImportPlugin->import($dataImportConfigurationTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testImportThrowsExceptionWhenProductListIsNotFound(): void
     {
         // Assign
@@ -92,9 +83,6 @@ class MerchantRelationshipProductListDataImportPluginTest extends Unit
         $merchantRelationshipProductListDataImportPlugin->import($dataImportConfigurationTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testImportThrowsExceptionWhenMerchantRelationKeyIsNotDefined(): void
     {
         // Assign
@@ -110,9 +98,6 @@ class MerchantRelationshipProductListDataImportPluginTest extends Unit
         $merchantRelationshipProductListDataImportPlugin->import($dataImportConfigurationTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testImportThrowsExceptionWhenMerchantRelationIsNotFound(): void
     {
         // Assign
@@ -128,11 +113,6 @@ class MerchantRelationshipProductListDataImportPluginTest extends Unit
         $merchantRelationshipProductListDataImportPlugin->import($dataImportConfigurationTransfer);
     }
 
-    /**
-     * @param string $filePath
-     *
-     * @return \Generated\Shared\Transfer\DataImporterConfigurationTransfer
-     */
     protected function getDataImporterReaderConfigurationTransfer(string $filePath): DataImporterConfigurationTransfer
     {
         $dataImporterReaderConfigurationTransfer = new DataImporterReaderConfigurationTransfer();
@@ -144,9 +124,6 @@ class MerchantRelationshipProductListDataImportPluginTest extends Unit
         return $dataImportConfigurationTransfer;
     }
 
-    /**
-     * @return void
-     */
     public function testGetImportTypeReturnsTypeOfImporter(): void
     {
         // Assert

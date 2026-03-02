@@ -31,13 +31,6 @@ class MerchantRelationshipProductListDataImportCommunicationTester extends Actor
 {
     use _generated\MerchantRelationshipProductListDataImportCommunicationTesterActions;
 
-    /**
-     * @param string $merchantRelationshipKey
-     * @param string|null $companyBusinessUnitOwnerKey
-     * @param array $assigneeCompanyBusinessUnitKeys
-     *
-     * @return \Generated\Shared\Transfer\MerchantRelationshipTransfer
-     */
     public function createMerchantRelationship(
         string $merchantRelationshipKey,
         ?string $companyBusinessUnitOwnerKey = null,

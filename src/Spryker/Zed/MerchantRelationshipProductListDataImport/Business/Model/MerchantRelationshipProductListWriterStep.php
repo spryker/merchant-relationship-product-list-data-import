@@ -14,11 +14,6 @@ use Spryker\Zed\MerchantRelationshipProductListDataImport\Business\Model\DataSet
 
 class MerchantRelationshipProductListWriterStep implements DataImportStepInterface
 {
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @return void
-     */
     public function execute(DataSetInterface $dataSet): void
     {
         /** @var \Orm\Zed\ProductList\Persistence\SpyProductList $productListEntity */
