@@ -17,19 +17,6 @@ use Spryker\Zed\MerchantRelationshipProductListDataImport\Business\Model\DataSet
 
 class MerchantRelationshipKeyToIdMerchantRelationshipStep implements DataImportStepInterface
 {
-    /**
-     * @var array<int>
-     */
-    protected $idMerchantRelationshipCache = [];
-
-    /**
-     * @param \Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface $dataSet
-     *
-     * @throws \Spryker\Zed\DataImport\Business\Exception\InvalidDataException
-     * @throws \Spryker\Zed\DataImport\Business\Exception\EntityNotFoundException
-     *
-     * @return void
-     */
     public function execute(DataSetInterface $dataSet): void
     {
         $merchantRelationshipKey = $dataSet[MerchantRelationshipProductListDataSetInterface::MERCHANT_RELATION_KEY];
@@ -37,17 +24,14 @@ class MerchantRelationshipKeyToIdMerchantRelationshipStep implements DataImportS
             throw new InvalidDataException(sprintf('"%s" is required.', MerchantRelationshipProductListDataSetInterface::MERCHANT_RELATION_KEY));
         }
 
-        if (!isset($this->idMerchantRelationshipCache[$merchantRelationshipKey])) {
-            /** @var \Orm\Zed\MerchantRelationship\Persistence\SpyMerchantRelationshipQuery $merchantRelationshipQuery */
-            $merchantRelationshipQuery = SpyMerchantRelationshipQuery::create()->select(SpyMerchantRelationshipTableMap::COL_ID_MERCHANT_RELATIONSHIP);
-            /** @var int|null $idMerchantRelationship */
-            $idMerchantRelationship = $merchantRelationshipQuery->findOneByMerchantRelationshipKey($merchantRelationshipKey);
+        /** @var \Orm\Zed\MerchantRelationship\Persistence\SpyMerchantRelationshipQuery $merchantRelationshipQuery */
+        $merchantRelationshipQuery = SpyMerchantRelationshipQuery::create()->select(SpyMerchantRelationshipTableMap::COL_ID_MERCHANT_RELATIONSHIP);
+        /** @var int|null $idMerchantRelationship */
+        $idMerchantRelationship = $merchantRelationshipQuery->findOneByMerchantRelationshipKey($merchantRelationshipKey);
 
-            if (!$idMerchantRelationship) {
-                throw new EntityNotFoundException(sprintf('Could not find Merchant Relationship by key "%s"', $merchantRelationshipKey));
-            }
-            $this->idMerchantRelationshipCache[$merchantRelationshipKey] = $idMerchantRelationship;
+        if (!$idMerchantRelationship) {
+            throw new EntityNotFoundException(sprintf('Could not find Merchant Relationship by key "%s"', $merchantRelationshipKey));
         }
-        $dataSet[MerchantRelationshipProductListDataSetInterface::ID_MERCHANT_RELATIONSHIP] = $this->idMerchantRelationshipCache[$merchantRelationshipKey];
+        $dataSet[MerchantRelationshipProductListDataSetInterface::ID_MERCHANT_RELATIONSHIP] = $idMerchantRelationship;
     }
 }
